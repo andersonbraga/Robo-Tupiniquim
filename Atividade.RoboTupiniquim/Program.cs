@@ -1,104 +1,126 @@
 ﻿namespace Atividade.RoboTupiniquim
 {
-    internal class Program
+
+    static internal class Program
     {
+        static string comando;
+        static char[] charComando;
+        static int posicaoInicialX;
+        static int posicaoInicialY;
+        static char direcao;
+        static int posicaoFinalX;
+        static int posicaoFinalY;
+
         static void Main(string[] args)
         {
-
-
-            char quantidadeRobo;
-            do
+            for (int i = 0; i < 2; i++)
             {
-                Console.Write("Insira a posicao Inicial do Robo x: ");
-                int posicaoInicialX = Convert.ToInt32(Console.ReadLine().ToUpper());
+                PosicaoInicial();
+                Comandos();
+            }
+        }
 
-                Console.Write("Insira a posicao Inicial do Robo y: ");
-                int posicaoInicialY = Convert.ToInt32(Console.ReadLine().ToUpper());
+        
 
-                Console.WriteLine("Insira a direção do Robo: (N), (S), (L), (O) ");
-                char direcao = Convert.ToChar(Console.ReadLine().ToUpper());
 
-                Console.Write("Insira o camando a ser executado: ");
-                string comando = Console.ReadLine().ToUpper();
 
-                char[] charComando = comando.ToCharArray();
-                
-                int posicaoFinalX = posicaoInicialX;
-                int posicaoFinalY = posicaoInicialY; ;
-                for (int i = 0; i < charComando.Length; i++)
+        public static void PosicaoInicial()
+      
+        {
+            Console.Write("Insira a posicao Inicial do Robo x: ");
+            posicaoInicialX = Convert.ToInt32(Console.ReadLine().ToUpper());
+
+            Console.Write("Insira a posicao Inicial do Robo y: ");
+            posicaoInicialY = Convert.ToInt32(Console.ReadLine().ToUpper());
+
+            Console.WriteLine("Insira a direção do Robo: (N), (S), (L), (O) ");
+            direcao = Convert.ToChar(Console.ReadLine().ToUpper());
+
+            Console.Write("Insira o camando a ser executado: ");
+            comando = Console.ReadLine().ToUpper();
+
+            charComando = comando.ToCharArray();
+
+            posicaoFinalX = posicaoInicialX;
+            posicaoFinalY = posicaoInicialY;
+        }
+
+        public static void Comandos()
+        {
+            
+            for (int i = 0; i < charComando.Length; i++)
+            {
+                if (charComando[i] == 'M')
                 {
-                    if (charComando[i] == 'M')
+                    if (direcao == 'N')
                     {
-                        if (direcao == 'N')
-                        {
-                            posicaoFinalY++;
-                        }
-                        else if (direcao == 'S')
-                        {
-                            posicaoFinalY--;
-                        }
-                        else if (direcao == 'L')
-                        {
-                            posicaoFinalX++;
-                        }
-                        else if (direcao == 'O')
-                        {
-                            posicaoFinalX--;
-                        }
-
+                        posicaoFinalY++;
                     }
-
-                    else if (charComando[i] == 'E')
+                    else if (direcao == 'S')
                     {
-                        if (direcao == 'N')
-                        {
-                            direcao = 'L';
-                        }
-
-                        else if (direcao == 'S')
-                        {
-                            direcao = 'O';
-                        }
-
-
-
-                        else if (direcao == 'L')
-                        {
-                            direcao = 'S';
-                        }
-
-                        else if (direcao == 'O')
-                        {
-                            direcao = 'N';
-                        }
+                        posicaoFinalY--;
                     }
-
-                    else if (charComando[i] == 'D')
+                    else if (direcao == 'L')
                     {
-                        if (direcao == 'S')
-                        {
-                            direcao = 'O';
-                        }
-                        else if (direcao == 'N')
-                        {
-                            direcao = 'L';
-                        }
-                        else if (direcao == 'O')
-                        {
-                            direcao = 'N';
-                        }
-
-                        else if (direcao == 'L')
-                        {
-                            direcao = 'S';
-                        }
+                        posicaoFinalX++;
+                    }
+                    else if (direcao == 'O')
+                    {
+                        posicaoFinalX--;
                     }
 
                 }
-                Console.WriteLine($"{posicaoFinalX} {posicaoFinalY} {direcao}" );
-                Console.WriteLine("Deseja insirar outro robo? (S) sim ou (N) não ");
-                quantidadeRobo = Convert.ToChar(Console.ReadLine().ToUpper());
-            } while (quantidadeRobo == 'S');
+
+                else if (charComando[i] == 'E')
+                {
+                    if (direcao == 'N')
+                    {
+                        direcao = 'L';
+                    }
+
+                    else if (direcao == 'S')
+                    {
+                        direcao = 'O';
+                    }
+
+
+
+                    else if (direcao == 'L')
+                    {
+                        direcao = 'S';
+                    }
+
+                    else if (direcao == 'O')
+                    {
+                        direcao = 'N';
+                    }
+                }
+
+                else if (charComando[i] == 'D')
+                {
+                    if (direcao == 'S')
+                    {
+                        direcao = 'O';
+                    }
+                    else if (direcao == 'N')
+                    {
+                        direcao = 'L';
+                    }
+                    else if (direcao == 'O')
+                    {
+                        direcao = 'N';
+                    }
+
+                    else if (direcao == 'L')
+                    {
+                        direcao = 'S';
+                    }
+                }
+            }
+            Console.WriteLine($"{posicaoFinalX} {posicaoFinalY} {direcao}");
+            
+           
+
         }
     }
 }
